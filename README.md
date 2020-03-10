@@ -1,6 +1,6 @@
 # Apache Nutch powered by ElasticSearch and Solr
 
-![Nutch](POC_logo.png)
+![Nutch](https://user-images.githubusercontent.com/26482626/76356646-0d6d5500-62f5-11ea-9799-cc4dd7c66820.png)
 
 Apache Nutch é uma ferramenta de web crawling **robusta e escalável**. Pode ser integrado com indexadores tais como Solr e ElasticSearch. Seu uso gira em torno de aplicações que dependem de massa de dados e lidam com fluxos desses dados em outros endpoints. O framework contém regras de controle que agilizam o processo de web crawling e evita problemas como duplicidade e reduz a complexidade do serviço.
 
