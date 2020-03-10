@@ -1,0 +1,68 @@
+version: '3.3'
+
+services:
+
+  nutch:
+
+    image: "apache/nutch:latest"
+    environment: 
+      - elastic_host=elastic
+      - elastic_endpoint=http://elastic:9200
+      - elastic_port=9200
+      - JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+    working_dir: /root/nutch
+    depends_on: 
+      - elastic
+    
+    command:
+      - "./wait-for-ti.sh  -h elastic -p 9200 -- bash nutch"
+      - "/root/nutch/bin/crawl -i -D elastic.server.url=$elastic_endpoint -s urls crawl 5"  
+    #  - "bin/nutch index crawl/crawldb crawl/segments/*"
+
+    
+    volumes:
+      - "./nutch/config/ivy.xml:/root/nutch/ivy/ivy.xml"
+      - "./nutch/config/nutch-site.xml:/root/nutch/conf/nutch-site.xml"
+      - "./nutch/config/regex-urlfilter.txt:/root/nutch/conf/regex-urlfilter.txt"
+      - "./nutch/config/index-writter.xml:/root/nutch/conf/index-writers.xml"
+      - "./nutch/urls/seed.txt:/root/nutch/urls/seed.txt"
+      - "./nutch/config/build.xml:/root/nutch/build.xml"
+    networks:
+      - esnet
+
+  elastic:
+    image: elasticsearch:5.3
+    
+    environment:
+    #  - node.name=node1
+      - cluster.name=docker-elastic
+    #  - discovery.seed_hosts=server1,server2,server3
+    #  - cluster.initial_master_nodes=node1,node2,node3
+    #  - discovery.type=single-node
+    #  - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - cluster.routing.allocation.disk.threshold_enabled=false
+        
+    volumes: 
+      - es-data:/usr/share/elasticsearch/data  
+    #  - ./els/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ./els/log4j2.properties:/usr/share/elasticsearch/config/log4j2.properties
+      - ./data:/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1     
+    networks: 
+      - esnet 
+
+networks:
+  esnet:
+    driver: bridge
+
+volumes:
+  es-data:
+    driver: local
