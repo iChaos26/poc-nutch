@@ -19,9 +19,9 @@
 
   <writer id="indexer_elastic_1" class="org.apache.nutch.indexwriter.elastic.ElasticIndexWriter">
     <parameters>
-      <param name="host" value="elk"/>
+      <param name="host" value="elastic"/>
       <param name="port" value="9300"/>
-      <param name="cluster" value="elasticsearch"/>
+      <param name="cluster" value="docker-elastic"/>
       <param name="index" value="nutch"/>
       <param name="max.bulk.docs" value="250"/>
       <param name="max.bulk.size" value="2500500"/>
@@ -40,7 +40,7 @@
   </writer>
   <writer id="indexer_elastic_rest_1" class="org.apache.nutch.indexwriter.elasticrest.ElasticRestIndexWriter">
     <parameters>
-      <param name="host" value="elk"/>
+      <param name="host" value="elastic"/>
       <param name="port" value="9200"/>
       <param name="index" value="nutch"/>
       <param name="max.bulk.docs" value="250"/>

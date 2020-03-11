@@ -1540,7 +1540,7 @@
 
 <property>
   <name>elastic.host</name>
-  <value>elastic_host</value>
+  <value>elastic</value>
   <description>The hostname to send documents to using TransportClient. Either host
   and port must be defined or cluster.</description>
 </property>
