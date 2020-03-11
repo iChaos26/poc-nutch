@@ -43,7 +43,7 @@ O processo de captura e indexação do Apache Nutch se divide em etapas. Há com
 ![Arquitetura Nutch](https://user-images.githubusercontent.com/26482626/76442975-7d84e500-63a0-11ea-984a-55bc8d0a5e83.png)
 
 
-**Comando de execução** 
+**Comando de execução**: 
 Este comando irá executar todas as estapas e indexar o resultado à algum endpoint. Para especificar, basta passar o endpoint conector.
 
 >     Usage: crawl [-i|--index] [-D "key=value"] [-s <Seed Dir>] <Crawl Dir> <Num Rounds>
