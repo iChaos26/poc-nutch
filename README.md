@@ -47,23 +47,17 @@ O processo de captura e indexação do Apache Nutch se divide em etapas. Há com
 Este comando irá executar todas as estapas e indexar o resultado à algum endpoint. Para especificar, basta passar o endpoint conector.
 
 >     Usage: crawl [-i|--index] [-D "key=value"] [-s <Seed Dir>] <Crawl Dir> <Num Rounds>
->[-i|--index] -> Indexes crawl results into a configured indexer
->[-D] -> A Java property to pass to Nutch calls
->[-s] -> Seed Directory in which to look for a seeds file
->[Crawl Dir] -> Directory where the crawl/link/segments dirs are saved
->Num Rounds -> The number of rounds to run this crawl for
-
 
 **Solr**
 
 ```sh
-$ /root/nutch/bin/crawl -i -D solr.server.url=http://solr:8983/solr/core -s urls crawl 5
+$/root/nutch/bin/crawl -i -D solr.server.url=http://solr:8983/solr/core -s urls crawl 5
 ```
 
 **Elastic**
 
 ```sh
-$ /root/nutch/bin/crawl -i -D elastic.server.url=http://localhost:9200 -s urls crawl 5
+$/root/nutch/bin/crawl -i -D elastic.server.url=http://localhost:9200 -s urls crawl 5
 ```
 
 **Step-by-Step**
